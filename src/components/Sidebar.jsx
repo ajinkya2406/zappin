@@ -28,46 +28,68 @@ import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import SendIcon from '@mui/icons-material/Send';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import GroupIcon from '@mui/icons-material/Group';
+import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 
 const drawerWidth = 240;
-const collapsedWidth = 70; // Adjusted for better spacing
+const collapsedWidth = 70;
 
-const menuItems = [
-  { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
-  { text: 'Categories', icon: <CategoryIcon />, path: '/categories' },
-  { text: 'Sub Categories', icon: <CategoryIcon />, path: '/subcategories' },
-  { text: 'Products', icon: <StorefrontIcon />, path: '/products' },
-  { text: 'Outlets', icon: <StorefrontIcon />, path: '/outlets' },
-  { text: 'Offers & Coupons', icon: <LocalOfferIcon />, path: '/offers' },
-  {
-    text: 'Orders',
-    icon: <ShoppingCartIcon />,
-    subItems: [
-      { text: 'Pending Orders', icon: <PendingIcon sx={{ fontSize: 20 }} />, path: '/orders/pending' },
-      { text: 'Order Accepted', icon: <CheckCircleOutlineIcon sx={{ fontSize: 20 }} />, path: '/orders/accepted' },
-      { text: 'Order Rejected', icon: <HighlightOffIcon sx={{ fontSize: 20 }} />, path: '/orders/rejected' },
-      { text: 'Preparing Food', icon: <RestaurantIcon sx={{ fontSize: 20 }} />, path: '/orders/preparing' },
-      { text: 'Delivery on the way', icon: <TwoWheelerIcon sx={{ fontSize: 20 }} />, path: '/orders/on-the-way' },
-      { text: 'Delivered Orders', icon: <SendIcon sx={{ fontSize: 20 }} />, path: '/orders/delivered' },
-    ],
-  },
-  { text: 'Users', icon: <PeopleIcon />, path: '/users' },
-  { text: 'Sections', icon: <ViewModuleIcon />, path: '/sections' },
-  { text: 'Contents', icon: <ViewModuleIcon />, path: '/contents' },
-  { text: 'Expenses', icon: <AttachMoneyIcon />, path: '/expenses' },
-  { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
-];
-
-function Sidebar({ collapsed }) {
+const Sidebar = ({ collapsed }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [ordersOpen, setOrdersOpen] = useState(false);
+  const [usersOpen, setUsersOpen] = useState(false);
 
   const handleToggleOrders = () => {
     if (!collapsed) {
       setOrdersOpen(!ordersOpen);
     }
   };
+
+  const handleToggleUsers = () => {
+    if (!collapsed) {
+      setUsersOpen(!usersOpen);
+    }
+  };
+
+  const menuItems = [
+    { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
+    { text: 'Categories', icon: <CategoryIcon />, path: '/categories' },
+    { text: 'Sub Categories', icon: <CategoryIcon />, path: '/subcategories' },
+    { text: 'Products', icon: <StorefrontIcon />, path: '/products' },
+    { text: 'Outlets', icon: <StorefrontIcon />, path: '/outlets' },
+    { text: 'Offers & Coupons', icon: <LocalOfferIcon />, path: '/offers' },
+    {
+      text: 'Orders',
+      icon: <ShoppingCartIcon />,
+      open: ordersOpen,
+      toggle: handleToggleOrders,
+      subItems: [
+        { text: 'Pending Orders', icon: <PendingIcon sx={{ fontSize: 20 }} />, path: '/orders/pending' },
+        { text: 'Order Accepted', icon: <CheckCircleOutlineIcon sx={{ fontSize: 20 }} />, path: '/orders/accepted' },
+        { text: 'Order Rejected', icon: <HighlightOffIcon sx={{ fontSize: 20 }} />, path: '/orders/rejected' },
+        { text: 'Preparing Food', icon: <RestaurantIcon sx={{ fontSize: 20 }} />, path: '/orders/preparing' },
+        { text: 'Delivery on the way', icon: <TwoWheelerIcon sx={{ fontSize: 20 }} />, path: '/orders/on-the-way' },
+        { text: 'Delivered Orders', icon: <SendIcon sx={{ fontSize: 20 }} />, path: '/orders/delivered' },
+      ],
+    },
+    {
+      text: 'Users',
+      icon: <PeopleIcon />,
+      open: usersOpen,
+      toggle: handleToggleUsers,
+      subItems: [
+        { text: 'Add New User', icon: <PersonAddIcon sx={{ fontSize: 20 }} />, path: '/users/add' },
+        { text: 'View Customers', icon: <GroupIcon sx={{ fontSize: 20 }} />, path: '/users/view-customers' },
+        { text: 'View Delivery Boys', icon: <DeliveryDiningIcon sx={{ fontSize: 20 }} />, path: '/users/view-delivery-boys' },
+      ],
+    },
+    { text: 'Sections', icon: <ViewModuleIcon />, path: '/sections' },
+    { text: 'Contents', icon: <ViewModuleIcon />, path: '/contents' },
+    { text: 'Expenses', icon: <AttachMoneyIcon />, path: '/expenses' },
+    { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
+  ];
 
   return (
     <Drawer
@@ -99,7 +121,7 @@ function Sidebar({ collapsed }) {
               <Tooltip title={collapsed ? item.text : ''} placement="right">
                 <ListItem
                   button
-                  onClick={handleToggleOrders}
+                  onClick={item.toggle}
                   sx={{
                     my: 1,
                     backgroundColor: 'transparent',
@@ -114,10 +136,10 @@ function Sidebar({ collapsed }) {
                     {item.icon}
                   </ListItemIcon>
                   {!collapsed && <ListItemText primary={item.text} />}
-                  {!collapsed && (ordersOpen ? <ExpandLess /> : <ExpandMore />)}
+                  {!collapsed && (item.open ? <ExpandLess /> : <ExpandMore />)}
                 </ListItem>
               </Tooltip>
-              <Collapse in={!collapsed && ordersOpen} timeout="auto" unmountOnExit>
+              <Collapse in={!collapsed && item.open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {item.subItems.map((subItem) => (
                     <ListItem
@@ -127,7 +149,8 @@ function Sidebar({ collapsed }) {
                       sx={{
                         pl: 4,
                         py: 1,
-                        backgroundColor: location.pathname === subItem.path ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
+                        backgroundColor:
+                          location.pathname === subItem.path ? 'rgba(255, 255, 255, 0.2)' : 'transparent',
                         '&:hover': {
                           backgroundColor: 'rgba(255, 255, 255, 0.1)',
                         },
@@ -149,7 +172,8 @@ function Sidebar({ collapsed }) {
                 onClick={() => navigate(item.path)}
                 sx={{
                   my: 1,
-                  backgroundColor: location.pathname === item.path ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                  backgroundColor:
+                    location.pathname === item.path ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
                   '&:hover': {
                     backgroundColor: 'rgba(255, 255, 255, 0.1)',
                   },
@@ -168,6 +192,6 @@ function Sidebar({ collapsed }) {
       </List>
     </Drawer>
   );
-}
+};
 
-export default Sidebar; 
+export default Sidebar;

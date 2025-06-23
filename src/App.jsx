@@ -14,7 +14,7 @@ import SectionsPage from './components/pages/Sections/SectionsPage.jsx';
 import ContentsPage from './components/pages/Contents/ContentsPage.jsx';
 import ExpensesPage from './components/pages/Expenses/ExpensesPage.jsx';
 import SettingsPage from './components/pages/Settings/SettingsPage.jsx';
-
+import ViewCustomers from './components/pages/Users/ViewCustomers';
 // Order Pages
 import PendingOrdersPage from './components/pages/Orders/PendingOrdersPage.jsx';
 import PreparingFoodPage from './components/pages/Orders/PreparingFoodPage.jsx';
@@ -67,6 +67,7 @@ function App() {
               <Route path="/orders/delivered" element={<DeliveredOrdersPage />} />
               
               <Route path="/users" element={<UsersPage />} />
+              <Route path="/users/view-customers" element={<ViewCustomers />} />
               <Route path="/sections" element={<SectionsPage />} />
               <Route path="/contents" element={<ContentsPage />} />
               <Route path="/expenses" element={<ExpensesPage />} />
