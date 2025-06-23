@@ -1,0 +1,3 @@
+role,fullname,mobile,email,flat,building,street,landmark,pincode,adhar,adhar_copy,passport_photo
+Customer,Sneha Kumawat,08767200831,sneha@example.com,Flat 101,Green Tower,Main Street,Near Park,411006,123456789012,uploads/adhar1.png,uploads/passport1.png
+Admin,John Doe,08767200000,john@example.com,Flat 202,Blue Tower,Second Street,Near Mall,411007,987654321098,uploads/adhar2.png,uploads/passport2.png

@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 220px;
+    background: #333;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: orange;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #444;
+}
+
+.main-content {
+    margin-left: 220px;
+}
+
+.topbar {
+    background: orange;
+    color: white;
+    padding: 10px;
+    text-align: right;
+}
+
+.content {
+    padding: 20px;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: orange;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkorange;
+}
+
+.flash {
+    color: green;
+    text-align: center;
+}

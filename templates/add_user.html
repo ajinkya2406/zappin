@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Add New User</h2>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <p class="flash">{{ message }}</p>
+    {% endfor %}
+{% endwith %}
+
+<form method="POST" enctype="multipart/form-data">
+    <label>Select Role</label>
+    <select name="role" required>
+        <option value="Customer">Customer</option>
+        <option value="Admin">Admin</option>
+        <option value="Vendor">Vendor</option>
+    </select>
+
+    <label>Full Name</label>
+    <input type="text" name="fullname" required>
+
+    <label>Mobile Number</label>
+    <input type="text" name="mobile" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Flat No./Bungalow No.</label>
+    <input type="text" name="flat" required>
+
+    <label>Building Name</label>
+    <input type="text" name="building" required>
+
+    <label>Street Name/Lane No.</label>
+    <input type="text" name="street" required>
+
+    <label>Landmark</label>
+    <input type="text" name="landmark">
+
+    <label>Pincode</label>
+    <input type="text" name="pincode" required>
+
+    <label>Adhar Number</label>
+    <input type="text" name="adhar" required>
+
+    <label>Adhar Card Copy</label>
+    <input type="file" name="adhar_copy">
+
+    <label>Passport Size Photo</label>
+    <input type="file" name="passport_photo">
+
+    <button type="submit">Add User</button>
+</form>
+{% endblock %}
