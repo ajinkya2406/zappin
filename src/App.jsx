@@ -27,6 +27,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#FF6B00',
+      contrastText: '#FFFFFF'
     },
     secondary: {
       main: '#17B2BA',
@@ -57,7 +58,7 @@ function App() {
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/outlets" element={<OutletsPage />} />
               <Route path="/offers" element={<OffersPage />} />
-              
+
               {/* Order Routes */}
               <Route path="/orders/pending" element={<PendingOrdersPage />} />
               <Route path="/orders/accepted" element={<OrderAcceptedPage />} />
@@ -65,7 +66,7 @@ function App() {
               <Route path="/orders/preparing" element={<PreparingFoodPage />} />
               <Route path="/orders/on-the-way" element={<DeliveryOnWayPage />} />
               <Route path="/orders/delivered" element={<DeliveredOrdersPage />} />
-              
+
               <Route path="/users" element={<UsersPage />} />
               <Route path="/sections" element={<SectionsPage />} />
               <Route path="/contents" element={<ContentsPage />} />
