@@ -17,7 +17,7 @@ import ContentsPage from './components/pages/Contents/ContentsPage.jsx';
 import ExpensesPage from './components/pages/Expenses/ExpensesPage.jsx';
 import SettingsPage from './components/pages/Settings/SettingsPage.jsx';
 
-// Order Pages
+// Order Pages a
 import PendingOrdersPage from './components/pages/Orders/PendingOrdersPage.jsx';
 import PreparingFoodPage from './components/pages/Orders/PreparingFoodPage.jsx';
 import DeliveryOnWayPage from './components/pages/Orders/DeliveryOnWayPage.jsx';
