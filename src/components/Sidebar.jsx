@@ -51,7 +51,15 @@ const menuItems = [
       { text: 'Delivered Orders', icon: <SendIcon sx={{ fontSize: 20 }} />, path: '/orders/delivered' },
     ],
   },
-  { text: 'Users', icon: <PeopleIcon />, path: '/users' },
+  {
+    text: 'Users',
+    icon: <PeopleIcon />,
+    subItems: [
+      { text: 'Add New User', icon: <PeopleIcon sx={{ fontSize: 20 }} />, path: '/users/add' },
+      { text: 'View Customers', icon: <PeopleIcon sx={{ fontSize: 20 }} />, path: '/users/customers' },
+      { text: 'View Delivery Boys', icon: <PeopleIcon sx={{ fontSize: 20 }} />, path: '/users/delivery-boys' },
+    ],
+  },
   { text: 'Sections', icon: <ViewModuleIcon />, path: '/sections' },
   { text: 'Contents', icon: <ViewModuleIcon />, path: '/contents' },
   { text: 'Expenses', icon: <AttachMoneyIcon />, path: '/expenses' },
@@ -61,12 +69,12 @@ const menuItems = [
 function Sidebar({ collapsed }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [ordersOpen, setOrdersOpen] = useState(false);
+  // Track which dropdown is open: null, 'Orders', or 'Users'
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-  const handleToggleOrders = () => {
-    if (!collapsed) {
-      setOrdersOpen(!ordersOpen);
-    }
+  const handleToggleDropdown = (dropdownName) => {
+    if (collapsed) return;
+    setOpenDropdown((prev) => (prev === dropdownName ? null : dropdownName));
   };
 
   return (
@@ -99,7 +107,7 @@ function Sidebar({ collapsed }) {
               <Tooltip title={collapsed ? item.text : ''} placement="right">
                 <ListItem
                   button
-                  onClick={handleToggleOrders}
+                  onClick={() => handleToggleDropdown(item.text)}
                   sx={{
                     my: 1,
                     backgroundColor: 'transparent',
@@ -114,10 +122,10 @@ function Sidebar({ collapsed }) {
                     {item.icon}
                   </ListItemIcon>
                   {!collapsed && <ListItemText primary={item.text} />}
-                  {!collapsed && (ordersOpen ? <ExpandLess /> : <ExpandMore />)}
+                  {!collapsed && (openDropdown === item.text ? <ExpandLess /> : <ExpandMore />)}
                 </ListItem>
               </Tooltip>
-              <Collapse in={!collapsed && ordersOpen} timeout="auto" unmountOnExit>
+              <Collapse in={!collapsed && openDropdown === item.text} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {item.subItems.map((subItem) => (
                     <ListItem

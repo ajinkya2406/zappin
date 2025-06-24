@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Order Pending', 'Order Accepted', 'Preparing Food', 'Delivery On Way', 'Delivered', 'Order Rejected'],
+    enum: ['Order Pending', 'Order Accepted', 'Order Rejected', 'Preparing Food', 'Delivery on the way', 'Delivered Order'],
     default: 'Order Pending'
   },
   deliveryBoy: {

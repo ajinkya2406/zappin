@@ -8,11 +8,12 @@ function PendingOrdersPage() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(1);
-  const [deliveryBoys] = useState(['John', 'Mike', 'David', 'Steve', 'Tom']); // Example delivery boys
+  const [deliveryBoys, setDeliveryBoys] = useState([]);
   const ordersPerPage = 10;
 
   useEffect(() => {
     fetchOrders();
+    fetchDeliveryBoys();
   }, []);
 
   const fetchOrders = async () => {
@@ -26,6 +27,16 @@ function PendingOrdersPage() {
       console.error('Error fetching orders:', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchDeliveryBoys = async () => {
+    try {
+      const res = await fetch('/api/users?role=Delivery Boy');
+      const data = await res.json();
+      setDeliveryBoys(data);
+    } catch (err) {
+      console.error('Error fetching delivery boys:', err);
     }
   };
 
@@ -145,7 +156,7 @@ function PendingOrdersPage() {
                       >
                         <MenuItem value="">-- Select --</MenuItem>
                         {deliveryBoys.map((boy) => (
-                          <MenuItem key={boy} value={boy}>{boy}</MenuItem>
+                          <MenuItem key={boy._id} value={boy.fullName}>{boy.fullName}</MenuItem>
                         ))}
                       </Select>
                     </TableCell>
