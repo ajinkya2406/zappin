@@ -9,7 +9,9 @@ import SubCategoriesPage from './components/pages/SubCategories/SubCategoriesPag
 import ProductsPage from './components/pages/Products/ProductsPage.jsx';
 import OutletsPage from './components/pages/Outlets/OutletsPage.jsx';
 import OffersPage from './components/pages/Offers/OffersPage.jsx';
-import UsersPage from './components/pages/Users/UsersPage.jsx';
+import AddUserPage from './components/pages/Users/AddUserPage.jsx';
+import CustomersPage from './components/pages/Users/CustomersPage.jsx';
+import DeliveryBoysPage from './components/pages/Users/DeliveryBoysPage.jsx';
 import SectionsPage from './components/pages/Sections/SectionsPage.jsx';
 import ContentsPage from './components/pages/Contents/ContentsPage.jsx';
 import ExpensesPage from './components/pages/Expenses/ExpensesPage.jsx';
@@ -66,7 +68,10 @@ function App() {
               <Route path="/orders/on-the-way" element={<DeliveryOnWayPage />} />
               <Route path="/orders/delivered" element={<DeliveredOrdersPage />} />
               
-              <Route path="/users" element={<UsersPage />} />
+              {/* User Routes */}
+              <Route path="/users/add" element={<AddUserPage />} />
+              <Route path="/users/customers" element={<CustomersPage />} />
+              <Route path="/users/delivery-boys" element={<DeliveryBoysPage />} />
               <Route path="/sections" element={<SectionsPage />} />
               <Route path="/contents" element={<ContentsPage />} />
               <Route path="/expenses" element={<ExpensesPage />} />
