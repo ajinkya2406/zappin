@@ -38,7 +38,7 @@ const products = [
   { id: 37, image: 'chickenmanchurian.png', category: 'CHINESE', name: 'CHICKEN MANCHURIAN', offer: 'NO OFFER', price: '100/-', recommended: 'no' },
   { id: 38, image: 'chickenlollipop.png', category: 'CHINESE', name: 'CHICKEN LOLLYPOP', offer: 'NO OFFER', price: '100/-', recommended: 'no' }
 ];
-
+//a
 function loadProducts(list = products) {
   const productList = document.getElementById("productList");
   productList.innerHTML = "";
