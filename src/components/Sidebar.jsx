@@ -36,7 +36,14 @@ const menuItems = [
   { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
   { text: 'Categories', icon: <CategoryIcon />, path: '/categories' },
   { text: 'Sub Categories', icon: <CategoryIcon />, path: '/subcategories' },
-  { text: 'Products', icon: <StorefrontIcon />, path: '/products' },
+  {
+    text: 'Products',
+    icon: <StorefrontIcon />,
+    subItems: [
+      { text: 'Add New Product', icon: <CategoryIcon sx={{ fontSize: 20 }} />, path: '/products/add' },
+      { text: 'View Products', icon: <ViewModuleIcon sx={{ fontSize: 20 }} />, path: '/products' },
+    ],
+  },
   { text: 'Outlets', icon: <StorefrontIcon />, path: '/outlets' },
   { text: 'Offers & Coupons', icon: <LocalOfferIcon />, path: '/offers' },
   {
@@ -62,7 +69,14 @@ const menuItems = [
   },
   { text: 'Sections', icon: <ViewModuleIcon />, path: '/sections' },
   { text: 'Contents', icon: <ViewModuleIcon />, path: '/contents' },
-  { text: 'Expenses', icon: <AttachMoneyIcon />, path: '/expenses' },
+  {
+    text: 'Expenses',
+    icon: <AttachMoneyIcon />,
+    subItems: [
+      { text: 'Add Expense', icon: <CategoryIcon sx={{ fontSize: 20 }} />, path: '/expenses/add' },
+      { text: 'View Expenses', icon: <ViewModuleIcon sx={{ fontSize: 20 }} />, path: '/expenses' },
+    ],
+  },
   { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
 ];
 
